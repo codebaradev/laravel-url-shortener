@@ -1,0 +1,7 @@
+@startuml usecase
+
+actor "User" as user
+
+object "Website
+
+@enduml

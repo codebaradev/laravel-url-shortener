@@ -1,0 +1,23 @@
+@startuml erd
+
+entity "User" as user {
+    * id : INT <PK>
+    ---
+    * username : VARCHAR(255) UNIQUE
+    another default attribute
+}
+
+entity "Url" as url {
+    * id : int <PK>
+    * user_id : INT <FK>
+    ---
+    * name : VARCHAR(255)
+    * link : VARCHAR(255) UNIQUE
+    * click : INT
+    * created_at : datetime
+    * updated_at : datetime
+}
+
+user ||--o{ url : "Has"
+
+@enduml
