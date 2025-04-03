@@ -31,14 +31,12 @@ class UrlServiceTest extends TestCase
         $user = User::query()->first();
 
         $data = [
-            'user_id' => $user->id,
             'name' => 'Test URL',
             'link' => 'https://example.com',
             'clicks' => 0,
         ];
 
-        $url = $this->urlService->create($data);
-        $this->assertEquals($data['user_id'], $url->user_id);
+        $url = $this->urlService->create($data, $user->id);
         $this->assertEquals($data['name'], $url->name);
         $this->assertEquals($data['link'], $url->link);
         $this->assertEquals($data['clicks'], $url->clicks);
@@ -51,14 +49,13 @@ class UrlServiceTest extends TestCase
         $user = User::query()->first();
 
         $data = [
-            'user_id' => $user->id,
             'name' => 'Test URL',
             'link' => 'https://example.com',
             'clicks' => 0,
         ];
 
-        $url = $this->urlService->create($data);
-        $createdUrl = $this->urlService->read($url->id);
+        $url = $this->urlService->create($data, $user->id);
+        $createdUrl = $this->urlService->read($url->id, $user->id);
 
         $this->assertEquals($createdUrl->user_id, $url->user_id);
         $this->assertEquals($createdUrl->name, $url->name);
@@ -73,24 +70,21 @@ class UrlServiceTest extends TestCase
         $user = User::query()->first();
 
         $data = [
-            'user_id' => $user->id,
             'name' => 'Test URL',
             'link' => 'https://example.com',
             'clicks' => 0,
         ];
 
-        $url = $this->urlService->create($data);
+        $url = $this->urlService->create($data, $user->id);
 
         $data = [
-            'user_id' => $user->id,
             'name' => 'Test URL Edited',
             'link' => 'https://example1.com',
             'clicks' => 1,
         ];
 
-        $url = $this->urlService->update($data, $url->id);
+        $url = $this->urlService->update($data, $url->id, $user->id);
 
-        $this->assertEquals($data['user_id'], $url->user_id);
         $this->assertEquals($data['name'], $url->name);
         $this->assertEquals($data['link'], $url->link);
         $this->assertEquals($data['clicks'], $url->clicks);
@@ -100,7 +94,9 @@ class UrlServiceTest extends TestCase
     {
         $this->testCreate();
 
-        $result = $this->urlService->delete(Url::query()->first()->id);
+        $user = User::query()->first();
+
+        $result = $this->urlService->delete(Url::query()->first()->id, $user->id);
 
         $this->assertTrue($result);
         $this->assertNull(Url::query()->first());
