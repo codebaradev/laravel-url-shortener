@@ -34,6 +34,7 @@ class UrlServiceTest extends TestCase
         $data = [
             'name' => 'Test URL',
             'link' => 'https://example.com',
+            'short' => 'a',
             'clicks' => 0,
         ];
 
@@ -52,6 +53,7 @@ class UrlServiceTest extends TestCase
         $data = [
             'name' => 'Test URL',
             'link' => 'https://example.com',
+            'short' => 'a',
             'clicks' => 0,
         ];
 
@@ -87,6 +89,7 @@ class UrlServiceTest extends TestCase
             'name' => 'Test URL',
             'link' => 'https://example.com',
             'clicks' => 0,
+            'short' => 'a',
         ];
 
         $url = $this->urlService->create($data, $user->id);
@@ -94,6 +97,7 @@ class UrlServiceTest extends TestCase
         $data = [
             'name' => 'Test URL Edited',
             'link' => 'https://example1.com',
+            'short' => 'c',
             'clicks' => 1,
         ];
 

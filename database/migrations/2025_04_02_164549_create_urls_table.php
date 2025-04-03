@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->string('name')->nullable();
-            $table->string('link')->nullable(false)->unique();
+            $table->string('link')->nullable(false);
+            $table->string('short')->nullable(false)->unique();
             $table->integer('clicks')->nullable(false)->default(0);
             $table->softDeletes();
             $table->timestamps();
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('urls');
     }
 };
