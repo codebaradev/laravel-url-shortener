@@ -10,6 +10,7 @@ class UrlService
     {
         $url = Url::query()->make($data);
         $url->user_id = $userId;
+        $url->short = substr(uniqid(), -6);
         $url->save();
 
         return $url;
