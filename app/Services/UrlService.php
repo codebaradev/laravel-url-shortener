@@ -15,9 +15,14 @@ class UrlService
         return $url;
     }
 
-    public function read(int $id, int $userId): ?Url
+    public function get(int $id, int $userId): ?Url
     {
         return Url::query()->where("user_id", $userId)->findOrFail($id);
+    }
+
+    public function getAll(int $userId): array
+    {
+        return Url::query()->where("user_id", $userId)->get()->all();
     }
 
     public function update(array $data, int $id, int $userId): ?Url
