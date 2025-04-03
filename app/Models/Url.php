@@ -9,13 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Url extends Model
 {
     use SoftDeletes;
-    
+
     protected $table = 'urls';
 
     protected $fillable = [
         'user_id',
         'name',
         'link',
+        'short',
         'clicks',
     ];
 
