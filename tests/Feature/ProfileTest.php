@@ -16,7 +16,7 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->get('/profile');
+            ->get('/users/profile');
 
         $response->assertOk();
     }
@@ -27,7 +27,7 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->patch('/profile', [
+            ->patch('/users/profile', [
                 'name' => 'Test User',
                 'username' => 'test',
                 'email' => 'test@example.com',
@@ -35,7 +35,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/profile');
+            ->assertRedirect('/users/profile');
 
         $user->refresh();
 
@@ -50,7 +50,7 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->patch('/profile', [
+            ->patch('/users/profile', [
                 'name' => 'Test User',
                 'username' => $user->username,
                 'email' => $user->email,
@@ -58,7 +58,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/profile');
+            ->assertRedirect('/users/profile');
 
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
@@ -69,7 +69,7 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->delete('/profile', [
+            ->delete('/users/profile', [
                 'password' => 'password',
             ]);
 
@@ -87,14 +87,14 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->from('/profile')
-            ->delete('/profile', [
+            ->from('/users/profile')
+            ->delete('/users/profile', [
                 'password' => 'wrong-password',
             ]);
 
         $response
             ->assertSessionHasErrorsIn('userDeletion', 'password')
-            ->assertRedirect('/profile');
+            ->assertRedirect('/users/profile');
 
         $this->assertNotNull($user->fresh());
     }

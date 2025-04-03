@@ -11,14 +11,14 @@ class RegistrationTest extends TestCase
 
     public function test_registration_screen_can_be_rendered(): void
     {
-        $response = $this->get('/register');
+        $response = $this->get('/users/register');
 
         $response->assertStatus(200);
     }
 
     public function test_new_users_can_register(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post('/users/register', [
             'name' => 'Test User',
             'username' => 'user',
             'email' => 'test@example.com',
@@ -32,7 +32,7 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register_invalid(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post('/users/register', [
             'name' => 'Test User',
             'username' => 'user asfkladf',
             'email' => 'test@example.com',
