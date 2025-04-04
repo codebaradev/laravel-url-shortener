@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Url\CreateUrlRequest;
+use App\Http\Requests\Url\UpdateUrlRequest;
 use App\Services\UrlService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class UrlController extends Controller
 {
@@ -26,9 +28,17 @@ class UrlController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function update(Request $request)
+    public function update(UpdateUrlRequest $request, int $id)
     {
-        
+        $user = $request->user();
+
+        $request->authorize('');
+
+        $data = $request->validated();
+
+        $this->urlService->update($data, $id, $user->id);
+
+        return redirect()->route('dashboard');
     }
 
     public function delete(Request $request)

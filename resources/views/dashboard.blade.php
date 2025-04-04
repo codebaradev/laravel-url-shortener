@@ -19,7 +19,7 @@
     <div>
         <form method="post" action="/app/urls">
             @csrf
-            
+
             <div>
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" autofocus autocomplete="name" />
@@ -28,11 +28,11 @@
             <div>
                 <x-input-label for="link" :value="__('Url')" />
                 <x-text-input id="link" name="link" type="text" class="mt-1 block w-full" :value="old('link')" autofocus autocomplete="name" />
-                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                <x-input-error class="mt-2" :messages="$errors->get('link')" />
             </div>
 
             <x-secondary-button>{{ __('Cancel') }}</x-secondary-button>
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Add') }}</x-primary-button>
 
         </form>
     </div>
@@ -40,10 +40,35 @@
     {{-- List of Urls --}}
     @foreach ($urls as $url)
         <div>
-            <span> {{ $url->name }} </span>
-            <span> {{ $url->link }} </span>
-            <span> {{ $url->short }} </span>
-            <span> {{ $url->clicks }} </span>
+            <span class="text-white" > {{ $url->name }} </span>
+            <span class="text-white"> {{ $url->link }} </span>
+            <span class="text-white"> {{ $url->short }} </span>
+            <span class="text-white"> {{ $url->clicks }} </span>
+
+            <form method="post" action="/app/urls/{{ $url->id }}">
+                @method('PUT')
+                @csrf
+
+                <div>
+                    <x-input-label for="name" :value="__('Name')" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $url->name)" autofocus autocomplete="name" />
+                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                </div>
+                <div>
+                    <x-input-label for="link" :value="__('Url')" />
+                    <x-text-input id="link" name="link" type="text" class="mt-1 block w-full" :value="old('link', $url->link)" autofocus autocomplete="name" />
+                    <x-input-error class="mt-2" :messages="$errors->get('link')" />
+                </div>
+                <div>
+                    <x-input-label for="short" :value="__('Shortened Url')" />
+                    <x-text-input id="short" name="short" type="text" class="mt-1 block w-full" :value="old('short', $url->short)" autofocus autocomplete="name" />
+                    <x-input-error class="mt-2" :messages="$errors->get('short')" />
+                </div>
+
+                <x-secondary-button>{{ __('Cancel') }}</x-secondary-button>
+                <x-primary-button>{{ __('Save') }}</x-primary-button>
+
+            </form>
         </div>
     @endforeach
 

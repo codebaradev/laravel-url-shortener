@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post("/app/urls", [UrlController::class, 'create'])->name('urls.create');
+    Route::put("/app/urls/{id}", [UrlController::class, 'update'])->where('id', '[0-9]+')->name('urls.update');
 });
 
 require __DIR__.'/auth.php';
