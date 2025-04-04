@@ -29,6 +29,11 @@ class UrlService
         return Url::query()->where("user_id", $userId)->findOrFail($id);
     }
 
+    public function getByShort(string $short): ?Url
+    {
+        return Url::query()->where("short", $short)->first();
+    }
+
     public function getAll(int $userId): array
     {
         return Url::query()->where("user_id", $userId)->get()->all();
