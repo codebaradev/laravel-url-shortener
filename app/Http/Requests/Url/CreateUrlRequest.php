@@ -26,6 +26,12 @@ class CreateUrlRequest extends FormRequest
         return [
             "name" => ['max:255'],
             "link" => ['required', 'max:255', 'url'],
+            "short" => [
+                'required',
+                'max:255',
+                'regex:/^[a-zA-Z0-9_]+$/',
+                Rule::unique('urls', 'short')->ignore($this->route('id'))
+            ],
         ];
     }
 }
