@@ -67,10 +67,14 @@
 
                 <x-secondary-button>{{ __('Cancel') }}</x-secondary-button>
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
+            </form>
 
+            <form method="post" action="/app/urls/{{ $url->id }}" >
+                @method('DELETE')
+                @csrf
+
+                <x-secondary-button type="submit">{{ __('Delete') }}</x-secondary-button>
             </form>
         </div>
     @endforeach
-
-
 </x-app-layout>

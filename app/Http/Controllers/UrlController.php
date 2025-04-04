@@ -41,8 +41,12 @@ class UrlController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request, int $id)
     {
+        $user = $request->user();
 
+        $this->urlService->delete($id, $user->id);
+
+        return redirect()->route('dashboard');
     }
 }

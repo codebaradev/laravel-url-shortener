@@ -49,4 +49,18 @@ class UrlControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect(route('dashboard'));
     }
+
+    public function testDelete(): void
+    {
+        $this->seed([UserSeeder::class, UrlSeeder::class]);
+
+        $user = User::query()->first();
+        $url = Url::query()->first();
+
+        $response = $this->actingAs($user)->delete("/app/urls/$url->id");
+
+        $response->assertStatus(302);
+        $response->assertRedirect(route('dashboard'));
+        $this->assertCount(9, Url::query()->where('user_id', $user->id)->get()->all());
+    }
 }
