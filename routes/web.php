@@ -9,6 +9,8 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/app/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/{short}', [UrlController::class, 'get'])->name('urls.get');
+
 Route::middleware('auth')->group(function () {
     Route::get('/users/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/users/profile', [ProfileController::class, 'update'])->name('profile.update');

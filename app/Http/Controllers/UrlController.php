@@ -17,6 +17,17 @@ class UrlController extends Controller
         $this->urlService = $urlService;
     }
 
+    public function get(Request $request, string $short)
+    {
+        $url = $this->urlService->getByShort($short);
+
+        if ($url) {
+            return redirect()->away($url->link);
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
     public function create(CreateUrlRequest $request)
     {
         $user = $request->user();

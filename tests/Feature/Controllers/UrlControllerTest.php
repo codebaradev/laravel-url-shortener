@@ -33,6 +33,19 @@ class UrlControllerTest extends TestCase
         $this->assertEquals('https://www.google.com/', $url->link);
     }
 
+    public function testGet()
+    {
+        $this->seed([UserSeeder::class, UrlSeeder::class]);
+
+        $urls = Url::query()->get();
+
+        foreach ($urls as $url) {
+            $response = $this->get("/$url->link");
+            $this->assertEquals( 'https://www.youtube.com/', $url->link);
+        }
+
+    }
+
     public function testUpdate(): void
     {
         $this->seed([UserSeeder::class, UrlSeeder::class]);
