@@ -10,7 +10,15 @@ class UrlService
     {
         $url = Url::query()->make($data);
         $url->user_id = $userId;
-        $url->short = substr(uniqid(), -6);
+
+        while (true) {
+            $short = substr(str_shuffle(str_repeat('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_', 6)), 0, 6);
+            if (!Url::query()->where('short', $short)->exists()) {
+                $url->short = $short;
+                break;
+            }
+        }
+
         $url->save();
 
         return $url;
