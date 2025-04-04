@@ -11,6 +11,8 @@ Route::get('/app/dashboard', [HomeController::class, 'dashboard'])->middleware([
 
 Route::get('/{short}', [UrlController::class, 'get'])->name('urls.get');
 
+Route::post('/app/shortened', [HomeController::class, 'shorten'])->withoutMiddleware('auth')->name('shortened');
+
 Route::middleware('auth')->group(function () {
     Route::get('/users/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/users/profile', [ProfileController::class, 'update'])->name('profile.update');

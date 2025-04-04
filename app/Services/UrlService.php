@@ -6,7 +6,7 @@ use App\Models\Url;
 
 class UrlService
 {
-    public function create(array $data, int $userId): Url
+    public function create(array $data, ?int $userId): Url
     {
         $url = Url::query()->make($data);
         $url->user_id = $userId;

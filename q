@@ -1,0 +1,26 @@
+* [33m17192b8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mFeature/UrlController[m[33m)[m add: get by short
+* [33m1c92dac[m fix: change the link of UrlSeeder
+* [33mecb0df2[m fix: add url rule in all UrlRequest
+* [33mf131f28[m feat: add getByShort on UrlService
+* [33mbfebeee[m feat: add delete
+* [33m4d4427c[m fix: layout
+* [33mb4fa43a[m feat: add update
+* [33md789710[m fix: Erd
+* [33m2540f19[m[33m ([m[1;31morigin/Feature/UrlController[m[33m)[m fix: Primary and Secondary Button Component
+* [33m4ef3dc4[m fix: UrlServie Create Method
+* [33mad5a182[m feat: add Create
+*   [33ma958118[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m Merge Feature/HomeController
+[32m|[m[33m\[m  
+[32m|[m * [33m68e9f11[m[33m ([m[1;31morigin/Feature/HomeController[m[33m, [m[1;32mFeature/HomeController[m[33m)[m feat: add HomeController
+[32m|[m * [33mb0e56ca[m fix: Url Models
+[32m|[m * [33mc42b0a5[m refactor: change the layout and dashboard view
+[32m|[m[32m/[m  
+* [33mb31613e[m feat: Add getAll method in UrlService
+* [33ma34a9d1[m fix: Url Service CRUD
+* [33mb9d8316[m refactor: Change the route
+* [33m593e9b7[m feat: add UrlService
+* [33m0008bce[m feat: User and Url model completed
+* [33m1f5c85f[m refactor: change the login and register view, change the profile logic and view
+* [33m9027435[m refactor: change register and login logic
+* [33me0bffd5[m feat: setup breeze
+* [33m7a33430[m feat: Setup
