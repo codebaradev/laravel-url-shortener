@@ -12,8 +12,10 @@ entity "Url" as url {
     * user_id : INT <FK>
     ---
     * name : VARCHAR(255)
-    * link : VARCHAR(255) UNIQUE
+    * link : VARCHAR(255)
+    * short : VARCHAR(255) UNIQUE
     * click : INT
+    
     * created_at : datetime
     * updated_at : datetime
 }

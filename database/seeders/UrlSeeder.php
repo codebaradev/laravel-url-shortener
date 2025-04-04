@@ -18,8 +18,8 @@ class UrlSeeder extends Seeder
             Url::query()->create([
                 'user_id' => User::query()->first()->id,
                 'name' => 'Google',
-                'link' => "g{$i}",
-                'short' => "g{$i}",
+                'link' => "https://www.youtube.com/",
+                'short' => "y{$i}",
                 'clicks' => 0,
             ]);
         }
