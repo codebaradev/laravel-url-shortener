@@ -15,6 +15,7 @@ entity "Url" as url {
     * link : VARCHAR(255)
     * short : VARCHAR(255) UNIQUE
     * click : INT
+    
     * created_at : datetime
     * updated_at : datetime
 }
