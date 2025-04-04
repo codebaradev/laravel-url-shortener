@@ -25,7 +25,7 @@ class CreateUrlRequest extends FormRequest
     {
         return [
             "name" => ['max:255'],
-            "link" => ['required', 'max:255'],
+            "link" => ['required', 'max:255', 'url'],
         ];
     }
 }
