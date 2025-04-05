@@ -12,7 +12,7 @@ class UrlService
         $url->user_id = $userId;
 
         while (true) {
-            $short = substr(str_shuffle(str_repeat('abcdefghijklmnopqrstuvwxyz0123456789_', 6)), 0, 6);
+            $short = substr(str_shuffle(str_repeat('abcdefghijklmnopqrstuvwxyz0123456789-', 6)), 0, 6);
             if (!Url::query()->where('short', $short)->exists()) {
                 $url->short = $short;
                 break;

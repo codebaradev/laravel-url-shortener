@@ -29,7 +29,7 @@ class UpdateUrlRequest extends FormRequest
             "short" => [
                 'required',
                 'max:255',
-                'regex:/^[a-zA-Z0-9_]+$/',
+                'regex:/^[a-zA-Z0-9-]+$/',
                 Rule::unique('urls', 'short')->ignore($this->route('id'))
             ],
         ];
