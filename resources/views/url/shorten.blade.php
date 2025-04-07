@@ -11,7 +11,7 @@
                             </span>
                             <div class="relative flex flex-col justify-center">
                                 <x-primary-button type="button" onclick="copyUrl('shorten-url', 'copied')"  class="mx-auto px-5 py-3 rounded-l-none">{{ __('Copy') }}</x-primary-button>
-                                <span id="copied" class="hidden absolute top-full text-right text-green-500/75 pr-3">Copied</span>
+                                <span id="copied" class="hidden absolute bottom-full text-right text-green-500/75 pr-3">Copied</span>
                             </div>
                         </div>
                         <a class="mt-5 text-slate-500 transition duration-100 hover:text-blue-500" href="/">Shorten another URL?</a>

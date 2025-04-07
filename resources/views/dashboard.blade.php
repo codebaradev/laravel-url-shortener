@@ -2,8 +2,16 @@
     <section class="py-10">
         <div class="container mx-auto px-10">
             <div class="">
-                <div class="flex justify-between items-center mb-5">
+                <div class="flex justify-between gap-10 items-center mb-5">
                     <h1 class="text-slate-500 text-xl font-bold">Shorten <span class="text-cyan-500">URLs</span></h1>
+                    <form action="" method="get" class="flex-1">
+                        <div class="flex items-center gap-2 border border-slate-500 rounded-full py-1 px-2 ">
+                            <button class="p-1 rounded-full hover:bg-slate-500/10">
+                                <svg width="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#64748b "><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#64748b " stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                            </button>
+                            <input id="search" name="search" type="text" placeholder="Search" class="w-full p-0 border-none outline-none bg-transparent text-slate-300 focus:outline-none focus:ring-0 focus:border-transparent" :value="old('search')" />
+                        </div>
+                    </form>
                     <x-primary-button onclick="hideShowElm('shorten-new-url-container')" class="px-5 py-2">{{ __('Add') }}</x-primary-button>
                 </div>
                 {{-- Shorten Url --}}
@@ -39,7 +47,7 @@
                     {{-- List of Urls --}}
                     @foreach ($urls as $url)
                         <div>
-                            <div onclick="hideShowElm('edit-url-{{ $url->short }}-container')" class="relative flex items-center cursor-pointer hover:bg-slate-800/50 p-5 mb-5 rounded-lg border border-gray-500 bg-slate-700/10">
+                            <div onclick="hideShowElm('edit-url-{{ $url->short }}-container')" class="relative flex items-center cursor-pointer transition hover:scale-[1.01] hover:bg-slate-800/50 p-5 mb-5 rounded-lg border border-gray-500 bg-slate-700/10">
                                 <div class="flex flex-col h-24 w-24 gap-2 justify-center items-center mr-2 bg-slate-800/70 rounded-lg p-2">
                                     <span class="text-slate-300 text-2xl">{{ $url->clicks }}</span>
                                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7 7L5.5 5.5M15 7L16.5 5.5M5.5 16.5L7 15M11 5L11 3M5 11L3 11M17.1603 16.9887L21.0519 15.4659C21.4758 15.3001 21.4756 14.7003 21.0517 14.5346L11.6992 10.8799C11.2933 10.7213 10.8929 11.1217 11.0515 11.5276L14.7062 20.8801C14.8719 21.304 15.4717 21.3042 15.6375 20.8803L17.1603 16.9887Z" stroke="#06b6d4 " stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
