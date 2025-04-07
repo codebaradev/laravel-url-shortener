@@ -34,7 +34,7 @@ class UrlController extends Controller
 
         $data = $request->validated();
 
-        $this->urlService->create($data, $user->id);
+        $this->urlService->create($data, $user ? $user->id : null);
 
         return redirect()->route('dashboard');
     }

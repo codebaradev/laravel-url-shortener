@@ -6,13 +6,13 @@ use App\Models\Url;
 
 class UrlService
 {
-    public function create(array $data, int $userId): Url
+    public function create(array $data, ?int $userId): Url
     {
         $url = Url::query()->make($data);
         $url->user_id = $userId;
 
         while (true) {
-            $short = substr(str_shuffle(str_repeat('abcdefghijklmnopqrstuvwxyz0123456789_', 6)), 0, 6);
+            $short = substr(str_shuffle(str_repeat('abcdefghijklmnopqrstuvwxyz0123456789-', 6)), 0, 6);
             if (!Url::query()->where('short', $short)->exists()) {
                 $url->short = $short;
                 break;
@@ -43,9 +43,20 @@ class UrlService
         }
     }
 
-    public function getAll(int $userId): array
+    public function getAll(int $userId, ?string $search): array
     {
-        return Url::query()->where("user_id", $userId)->get()->all();
+        $urls = Url::query()->where("user_id", $userId);
+        if ($search) {
+            $urls->where(function ($query) use ($search) {
+                $query->where("name", "LIKE", "%$search%")
+                    ->orWhere("link", "LIKE", "%$search%")
+                    ->orWhere("short", "LIKE", "%$search%");
+            });
+        }
+
+        $urls->orderBy("created_at", "desc");
+
+        return $urls->get()->all();
     }
 
     public function update(array $data, int $id, int $userId): ?Url
