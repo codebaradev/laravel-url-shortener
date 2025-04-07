@@ -43,9 +43,20 @@ class UrlService
         }
     }
 
-    public function getAll(int $userId): array
+    public function getAll(int $userId, ?string $search): array
     {
-        return Url::query()->where("user_id", $userId)->get()->all();
+        $urls = Url::query()->where("user_id", $userId);
+        if ($search) {
+            $urls->where(function ($query) use ($search) {
+                $query->where("name", "LIKE", "%$search%")
+                    ->orWhere("link", "LIKE", "%$search%")
+                    ->orWhere("short", "LIKE", "%$search%");
+            });
+        }
+
+        $urls->orderBy("created_at", "desc");
+
+        return $urls->get()->all();
     }
 
     public function update(array $data, int $id, int $userId): ?Url

@@ -6,6 +6,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Services\UrlService;
 use Database\Seeders\UrlSeeder;
+use Database\Seeders\UrlSeederSecond;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -71,11 +72,26 @@ class UrlServiceTest extends TestCase
         $this->seed([UserSeeder::class, UrlSeeder::class]);
 
         $user = User::query()->first();
-        $urls = $this->urlService->getAll($user->id);
+        $urls = $this->urlService->getAll($user->id, null);
 
         foreach ($urls as $url) {
             $this->assertEquals($user->id, $url->user_id);
         }
+    }
+
+    public function testGetAllWithSearch(): void
+    {
+        $this->seed([UserSeeder::class, UrlSeeder::class, UrlSeederSecond::class]);
+
+        $user = User::query()->first();
+        $urls = $this->urlService->getAll($user->id, 'facebook');
+
+        foreach ($urls as $url) {
+            $this->assertEquals($user->id, $url->user_id);
+            $this->assertEquals("Facebook", $url->name);
+        }
+
+        $this->assertCount(10, $urls);
 
     }
 

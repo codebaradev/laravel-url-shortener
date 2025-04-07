@@ -38,7 +38,7 @@ class HomeController extends Controller
         $user = $request->user();
 
         return response()->view('dashboard', [
-            'urls' => $this->urlService->getAll($user->id),
+            'urls' => $this->urlService->getAll($user->id, $request->input('search', null)),
             'user' => $user,
         ]);
     }
